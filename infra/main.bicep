@@ -44,7 +44,7 @@ module appsinsights 'modules/Microsoft.Insights/components/deploy.bicep' = {
   params: {
     name: appinsightname
     location: location
-    workspaceResourceId: logworkspace.outputs.logAnalyticsWorkspaceId
+    workspaceResourceId: logworkspace.outputs.resourceId
   }
 }
 

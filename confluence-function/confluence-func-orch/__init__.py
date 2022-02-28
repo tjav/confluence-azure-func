@@ -14,9 +14,17 @@ import azure.durable_functions as df
 
 
 def orchestrator_function(context: df.DurableOrchestrationContext):
-    result1 = yield context.call_activity('Hello', "Tokyo")
-    result2 = yield context.call_activity('Hello', "Seattle")
-    result3 = yield context.call_activity('Hello', "London")
-    return [result1, result2, result3]
+    result1 = yield context.call_activity('confluence-func-get-snow', "Tokyo")
+
+    result2 = yield context.call_activity('confluence-func-get-content', result1)
+    result3 = yield context.call_activity('confluence-func-get-graph', result1)
+
+    result4 = yield context.call_activity('confluence-func-get-store-table', result2, result3)
+
+    result5 = yield context.call_activity('confluence-func-compare-states', result4)
+
+    result6 = yield context.call_activity('confluence-func-publish-result', result5)
+    
+    return [result6]
 
 main = df.Orchestrator.create(orchestrator_function)
