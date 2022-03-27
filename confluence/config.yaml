@@ -1,0 +1,4 @@
+---
+azure_storage_connectionstring: "******"
+files_container_name: "files"
+source_folder: "C:/Users/******"
