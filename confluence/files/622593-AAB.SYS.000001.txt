@@ -1,0 +1,1 @@
+['Azure App Service Public', 'Azure Application Insights', 'Azure Cost Management', 'Azure Database for SQL', 'Azure Express Route', 'Azure Firewall']

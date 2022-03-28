@@ -1,0 +1,1 @@
+['Azure Log Analytics', 'Azure Monitor', 'Azure Storage', 'Azure Virtual Network']
