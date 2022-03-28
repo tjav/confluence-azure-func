@@ -8,7 +8,7 @@ from azure.common.credentials import ServicePrincipalCredentials
 
 tenant_id = "b36b57a2-31a9-4402-a292-6935c529ee1c"
 client_id = "9103764f-32bb-4ff1-9e0c-6825d9651bc9"
-client_secret = "WfG7Q~ZeJ~GSUMGVcRsYOwUuqhxE_OcbvsET2"
+client_secret = "use the client secret"
 subscription_id = "4d3587d2-2c0b-406e-85e6-ac2e719111a4"
 
 #credential = ClientSecretCredential(tenant_id=tenant_id, client_id=client_id, client_secret=client_secret)
