@@ -32,31 +32,29 @@ def upload(files, connection_string, container_name):
     print("Uploading to table...")
     files = get_files(config["source_folder"]+ "/files" )
     i=0
-    names = ['table1', 'table2', 'table3']
-    for file in files:
-        
-        #table_service.create_table(names[i])
-        table_client = table_service.get_table_client(table_name=names[i])
-        
-        #blob_client = container_client.get_blob_client(file.name)
-        
+    k=0
+    names = ['AABSYS000001', 'AABSYS000002', 'AABSYS000003']
+    table_service.create_table("confluenceresources")
+    for file in files:        
+        table_client = table_service.get_table_client("confluenceresources")  
+        #blob_client = container_client.get_blob_client(file.name)   
         with open(file.path, "rb") as data:
             contents =data.read()
             #blob_client.upload_blob(data)
             array = str(contents).split("'")
             array.remove('b"[')
             array.remove(']"')
-            K = ", "
-            while(K in array) :
-                array.remove(K)
+            cm = ", "
+            while(cm in array) :
+                array.remove(cm)
             print(array)
-            k=0
             el = 'abc'
             for el in array:
                 entity = {
                 "PartitionKey": str(k),
                 "RowKey": str(k),
                 "Service": str(el),
+                "OARID": str(names[i])
                 }
                 table_client.create_entity(entity=entity)
                 k = k+1
