@@ -5,19 +5,11 @@ import azure.functions as func
 import azure.durable_functions as df
 
 
-def entity_function(context: df.DurableOrchestrationContext):
+async def main(req: func.HttpRequest, starter: str) -> func.HttpResponse:
+    client = df.DurableOrchestrationClient(starter)
+    payload: str = json.loads(req.get_body().decode()) # Load JSON post request data
+    instance_id = await client.start_new(req.route_params["functionName"], client_input=payload)
 
-    current_value = context.get_state(lambda: 0)
-    operation = context.operation_name
-    if operation == "add":
-        amount = context.get_input()
-        current_value += amount
-        context.set_result(current_value)
-    elif operation == "reset":
-        current_value = 0
-    elif operation == "get":
-        context.set_result(current_value)
-    
-    context.set_state(current_value)
+    logging.info(f"Started orchestration with ID = '{instance_id}'.")
 
-main = df.Entity.create(entity_function)
+    return client.create_check_status_response(req, instance_id)

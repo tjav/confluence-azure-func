@@ -69,7 +69,7 @@ module  appserviceplan 'modules/Microsoft.Web/serverfarms/deploy.bicep' = {
       capacity: 1
     }
     serverOS: 'Linux'
-    
+  
   }
 }
 module functionapp 'modules/Microsoft.Web/sites/deploy.bicep' = {

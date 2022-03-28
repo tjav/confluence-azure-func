@@ -2,8 +2,24 @@
   "scriptFile": "__init__.py",
   "bindings": [
     {
-      "name": "context",
-      "type": "entityTrigger",
+      "authLevel": "anonymous",
+      "name": "req",
+      "type": "httpTrigger",
+      "direction": "in",
+      "route": "orchestrators/{functionName}",
+      "methods": [
+        "post",
+        "get"
+      ]
+    },
+    {
+      "name": "$return",
+      "type": "http",
+      "direction": "out"
+    },
+    {
+      "name": "starter",
+      "type": "orchestrationClient",
       "direction": "in"
     }
   ]

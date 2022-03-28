@@ -2,3 +2,8 @@
 
 azure-functions
 azure-functions-durable
+azure-storage-blob
+azure-identity
+azure-keyvault-secrets
+atlassian
+pandas
