@@ -7,6 +7,7 @@ import yaml
 from azure.storage.blob import ContainerClient
 from azure.data.tables import TableServiceClient
 from azure.data.tables import TableEntity
+import json
 
 def load_config():
     dir_root = os.path.dirname(os.path.abspath(__file__))
@@ -39,13 +40,19 @@ for item in resource_client.resources.list():
     print("===============")
     if item.tags:
         print("Uploading to table...")
+        strtag = str(item.tags)
+        array = strtag.split("'")
+        array.remove('{')
+        array.remove(': ')
+        array.remove('}')
         table_client = table_service.get_table_client("azureresources")  
         entity = {
             "PartitionKey": str(k),
             "RowKey": str(k),
             "Service": str(item.type),
-            "ID": str(item.tags)
+            "ID": str(array[1])
             }
         table_client.create_entity(entity=entity)
         k = k+1
         print(f'Uploaded to table storage')
+        
