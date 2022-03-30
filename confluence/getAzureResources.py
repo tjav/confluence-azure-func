@@ -43,7 +43,7 @@ resource_client = ResourceManagementClient(credential, subscription_id,tenant_id
 
 config = load_config()
 table_service = TableServiceClient.from_connection_string(conn_str=config["azure_storage_connectionstring"])
-table_service.create_table("azureresources")
+table_service.create_table_if_not_exists("azureresources")
 
 print("--Resources--")
 k=0
