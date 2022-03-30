@@ -34,7 +34,7 @@ def upload(files, connection_string, container_name):
     i=0
     k=0
     names = ['AABSYS000001', 'AABSYS000002', 'AABSYS000003']
-    table_service.create_table("confluenceresources")
+    table_service.create_table_if_not_exists("confluenceresources")
     for file in files:        
         table_client = table_service.get_table_client("confluenceresources")  
         #blob_client = container_client.get_blob_client(file.name)   
