@@ -17,17 +17,18 @@ import azure.durable_functions as df
 def orchestrator_function(context: df.DurableOrchestrationContext):
     input = context.get_input()
     page_id = input['page_id']
+    unit= input['OARID']
     # result1 = yield context.call_activity('confluence-func-get-snow', "Tokyo")
 
     result2 = yield context.call_activity('confluence-func-get-content', page_id)
     # result3 = yield context.call_activity('confluence-func-get-graph', result1)
-
-    # result4 = yield context.call_activity('confluence-func-get-store-table', result2, result3)
+    input4 = [result2,unit]
+    result4 = yield context.call_activity('confluence-func-store-table', input4)
 
     # result5 = yield context.call_activity('confluence-func-compare-states', result4)
 
     # result6 = yield context.call_activity('confluence-func-publish-result', result5)
     
-    return [result2]
+    return [result4]
 
 main = df.Orchestrator.create(orchestrator_function)

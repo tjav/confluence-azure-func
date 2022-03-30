@@ -23,6 +23,8 @@ def main(name: int) -> list:
     client = SecretClient(vault_url=KVUri, credential=credential)
     user_name= client.get_secret("username")
     pass_word= client.get_secret("password")
+
+    print(f"{user_name} with {pass_word}")
     
 
     confluence = Confluence(

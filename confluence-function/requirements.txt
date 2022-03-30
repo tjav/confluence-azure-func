@@ -5,5 +5,8 @@ azure-functions-durable
 azure-storage-blob
 azure-identity
 azure-keyvault-secrets
+azure.data.tables
 atlassian
 pandas
+pyyaml
+uuid
