@@ -4,20 +4,25 @@ name: deploy-infra
 
 # Controls when the workflow will run
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       AZURE_SUBSCRIPTION_ID:
         description: 'Subscription ID or Name'
         required: true
         type: string
-      AZURE_AZURE_RESOURCEGROUP_NAME:
+      AZURE_RESOURCEGROUP_NAME:
         description: 'Name of the Resource group'
         default: 'automate-confluence-func'
         required: false
         type: string
+      location:
+        description: 'location of Resource group'
+        default: 'westeurope'
+        required: false
+        type: string
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  # workflow_call:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -44,11 +49,8 @@ jobs:
         with:
           # Specify the script here
           inlineScript: |
-            az account set -s ${{ inputs.AZURE_SUBSCRIPTION_ID }}
-            groupexist=$(az group show -n ${{ inputs.AZURE_RESOURCEGROUP_NAME }}
-            if [ -z "$groupexist" ]; then
-            az group create -n ${{ inputs.AZURE_RESOURCEGROUP_NAME }} -l ${{ inputs.location}}
-            fi
-            az deployment group create -g ${{ inputs.AZURE_RESOURCEGROUP_NAME }} -f $GITHUB_WORKSPACE/infra/main.bicep
+            az account set -s ${{ github.event.inputs.AZURE_SUBSCRIPTION_ID }}
+            az account show -o table
+            az deployment group create -g ${{ github.event.inputs.AZURE_RESOURCEGROUP_NAME }} -f $GITHUB_WORKSPACE/infra/main.bicep
           # Azure CLI version to be used to execute the script. If not provided, latest version is used
           azcliversion: 2.30.0
