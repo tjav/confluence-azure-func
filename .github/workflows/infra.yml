@@ -4,7 +4,7 @@ name: deploy-infra
 
 # Controls when the workflow will run
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       AZURE_SUBSCRIPTION_ID:
         description: 'Subscription ID or Name'
@@ -17,7 +17,7 @@ on:
         type: string
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  # workflow_call:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
