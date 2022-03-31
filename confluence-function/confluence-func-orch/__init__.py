@@ -27,10 +27,10 @@ def orchestrator_function(context: df.DurableOrchestrationContext):
     input4 = [result3, unit]
     result4 = yield context.call_activity('confluence-func-store-table', input4)
     
-    # result5 = yield context.call_activity('confluence-func-compare-states', result4)
+    result5 = yield context.call_activity('confluence-func-compare-states', result4)
 
     # result6 = yield context.call_activity('confluence-func-publish-result', result5)
     
-    return [result4]
+    return [result5]
 
 main = df.Orchestrator.create(orchestrator_function)
