@@ -50,9 +50,9 @@ jobs:
           # Specify the script here
           inlineScript: |
             az account set -s ${{ github.event.inputs.AZURE_SUBSCRIPTION_ID }}
-            print(az account show -o table)
+            az account show -o table
             groupexist=$(az group show -n ${{ github.event.inputs.AZURE_RESOURCEGROUP_NAME }}
-            print($groupexist)
+            $groupexist
             # if [ -z "$groupexist" ]; then
             # az group create -n ${{ github.event.inputs.AZURE_RESOURCEGROUP_NAME }} -l ${{ github.event.inputs.location}}
             # fi
