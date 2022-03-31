@@ -14,7 +14,19 @@
 
 
 	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [],
+	"extensions": [
+		"GitHub.codespaces",
+		"ms-azuretools.vscode-azureresourcegroups",
+		"ms-python.python",
+		"redhat.vscode-yaml",
+		"ms-azuretools.vscode-azurefunctions",
+		"msazurermtools.azurerm-vscode-tools",
+		"ms-azuretools.vscode-azurestorage",
+		"ms-azuretools.vscode-bicep",
+		"eamodio.gitlens",
+		"kgrzywocz.wsl-path",
+		"yzhang.markdown-all-in-one"
+	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
