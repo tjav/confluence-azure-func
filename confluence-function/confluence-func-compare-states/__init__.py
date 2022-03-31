@@ -49,9 +49,9 @@ def compare() -> str:
         confluence = 0
         if(str(el[0]) != "nan"):
             # print(str(el[0]))
-            azure = 1
-        if(str(el[4]) != "nan"):
             confluence = 1
+        if(str(el[4]) != "nan"):
+            azure = 1
         entity = {
             "PartitionKey": str(i),
             "RowKey": str(i),
@@ -63,7 +63,7 @@ def compare() -> str:
         table_client.create_entity(entity=entity)
         i = i+1
 
-    return (f'Comparisson Completed')
+    return (f'Comparison Completed')
 
 def main(input: str) -> str:
     result = compare()
