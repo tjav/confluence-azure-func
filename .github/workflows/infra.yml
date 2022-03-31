@@ -15,6 +15,11 @@ on:
         default: 'automate-confluence-func'
         required: false
         type: string
+      location:
+        description: 'location of Resource group'
+        default: 'westeurope'
+        required: false
+        type: string
 
   # Allows you to run this workflow manually from the Actions tab
   # workflow_call:
@@ -44,11 +49,11 @@ jobs:
         with:
           # Specify the script here
           inlineScript: |
-            az account set -s ${{ inputs.AZURE_SUBSCRIPTION_ID }}
-            groupexist=$(az group show -n ${{ inputs.AZURE_RESOURCEGROUP_NAME }}
+            az account set -s ${{ github.event.inputs.AZURE_SUBSCRIPTION_ID }}
+            groupexist=$(az group show -n ${{ github.event.inputs.AZURE_RESOURCEGROUP_NAME }}
             if [ -z "$groupexist" ]; then
-            az group create -n ${{ inputs.AZURE_RESOURCEGROUP_NAME }} -l ${{ inputs.location}}
+            az group create -n ${{ github.event.inputs.AZURE_RESOURCEGROUP_NAME }} -l ${{ github.event.inputs.location}}
             fi
-            az deployment group create -g ${{ inputs.AZURE_RESOURCEGROUP_NAME }} -f $GITHUB_WORKSPACE/infra/main.bicep
+            az deployment group create -g ${{ github.event.inputs.AZURE_RESOURCEGROUP_NAME }} -f $GITHUB_WORKSPACE/infra/main.bicep
           # Azure CLI version to be used to execute the script. If not provided, latest version is used
           azcliversion: 2.30.0
