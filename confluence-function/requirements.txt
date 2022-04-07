@@ -7,6 +7,7 @@ azure-identity
 azure-keyvault-secrets
 azure.data.tables
 azure.mgmt.resource
-atlassian
+atlassian-python-api
 pandas
 pyyaml
+lxml
