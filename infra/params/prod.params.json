@@ -32,9 +32,9 @@
         "tables": {
             "value": {
                 "tables": [
-                    "func-conf-table",
-                    "func-azur-table",
-                    "func-comp-table"
+                    "funcconftable",
+                    "funcazurtable",
+                    "funccomptable"
                 ]
             }
         }
