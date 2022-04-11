@@ -1,0 +1,42 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "kvname": {
+            "value": "schaap-prd-conf-kv"
+        },
+        "storagename": {
+            "value": "schaapprdconfsta"
+        },
+        "tablestoragename": {
+            "value": "schaapprdconftable"
+        },
+        "eventgridname": {
+            "value": "schaap-prd-conf-grid"
+        },
+        "funcname": {
+            "value": "schaap-prd-conf-function"
+        },
+        "workspacename": {
+            "value": "schaap-prd-conf-law"
+        },
+        "appinsightname": {
+            "value": "schaap-prd-conf-apis"
+        },
+        "appservicename": {
+            "value": "schaap-prd-conf-applan"
+        },
+        "manageidname": {
+            "value": "schaap-prd-conf-man"
+        },
+        "tables": {
+            "value": {
+                "tables": [
+                    "funcconftable",
+                    "funcazurtable",
+                    "funccomptable"
+                ]
+            }
+        }
+    }
+}

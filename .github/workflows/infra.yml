@@ -15,6 +15,11 @@ on:
         default: 'automate-confluence-func'
         required: false
         type: string
+      PARAM_FILE_NAME:
+        description: 'Name of the parameter file'
+        default: 'dev.params.json'
+        required: false
+        type: string
       location:
         description: 'location of Resource group'
         default: 'westeurope'
@@ -51,6 +56,7 @@ jobs:
           inlineScript: |
             az account set -s ${{ github.event.inputs.AZURE_SUBSCRIPTION_ID }}
             az account show -o table
-            az deployment group create -g ${{ github.event.inputs.AZURE_RESOURCEGROUP_NAME }} -f $GITHUB_WORKSPACE/infra/main.bicep
+            az group list -o table
+            az deployment group create -g ${{ github.event.inputs.AZURE_RESOURCEGROUP_NAME }} -f $GITHUB_WORKSPACE/infra/main.bicep -p $GITHUB_WORKSPACE/infra/params/${{ github.event.inputs.PARAM_FILE_NAME }}
           # Azure CLI version to be used to execute the script. If not provided, latest version is used
           azcliversion: 2.30.0

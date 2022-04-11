@@ -11,7 +11,11 @@ from atlassian import Confluence
 import pandas as pd
 import os
 from azure.keyvault.secrets import SecretClient
-from azure.identity import AzureCliCredential
+
+if os.environ["ENVIRONMENT"] == "DEV":
+    from azure.identity import AzureCliCredential
+else:
+    from azure.identity import DefaultAzureCredential
 
 
 def main(name: int) -> list:
@@ -19,7 +23,11 @@ def main(name: int) -> list:
     confluence_name = os.environ["CONFLUENCE_NAME"]
     KVUri = f"https://{keyvault_name}.vault.azure.net"
     
-    credential = AzureCliCredential()
+    if os.environ["ENVIRONMENT"] == "DEV":
+        credential = AzureCliCredential()
+    else:
+        credential = DefaultAzureCredential()
+    
     client = SecretClient(vault_url=KVUri, credential=credential)
     user_name= client.get_secret("username")
     pass_word= client.get_secret("password")

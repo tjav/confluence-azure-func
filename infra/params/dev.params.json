@@ -1,0 +1,33 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "kvname": {
+            "value": "schaap-confunc-kv"
+        },
+        "storagename": {
+            "value": "schaapconfuncsta"
+        },
+        "tablestoragename": {
+            "value": "schaapconfuncstatable"
+        },
+        "eventgridname": {
+            "value": "schaap-confunc-grid"
+        },
+        "funcname": {
+            "value": "schaap-confunc-function"
+        },
+        "workspacename": {
+            "value": "schaap-confunc-law"
+        },
+        "appinsightname": {
+            "value": "schaap-confunc-apis"
+        },
+        "appservicename": {
+            "value": "schaap-confunc-applan"
+        },
+        "manageidname": {
+            "value": "schaap-confunc-man-id"
+        }
+    }
+}
