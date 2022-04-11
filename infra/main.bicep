@@ -21,7 +21,7 @@ module managedidentity 'modules/Microsoft.ManagedIdentity/userAssignedIdentities
 
 var tablerole = [
   {
-    'roleDefinitionIdOrName': 'Storage Table Data Contributor'
+    'roleDefinitionIdOrName': 'Contributor'
     'principalIds': [
         managedidentity.outputs.principalId
     ]
