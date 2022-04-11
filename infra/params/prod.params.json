@@ -27,7 +27,16 @@
             "value": "schaap-prd-conf-applan"
         },
         "manageidname": {
-            "value": "schaap-prd-conf-man-id"
+            "value": "schaap-prd-conf-man"
+        },
+        "tables": {
+            "value": {
+                "tables": [
+                    "func-conf-table",
+                    "func-azur-table",
+                    "func-comp-table"
+                ]
+            }
         }
     }
 }

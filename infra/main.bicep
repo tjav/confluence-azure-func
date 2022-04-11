@@ -10,6 +10,7 @@ param workspacename string = 'schaap-confunc-law'
 param appinsightname string = 'schaap-confunc-apis'
 param appservicename string = 'schaap-confunc-applan'
 param manageidname string = 'schaap-confunc-man-id'
+param tables object = {}
 
 module managedidentity 'modules/Microsoft.ManagedIdentity/userAssignedIdentities/deploy.bicep' = {
   name: 'deploy-managedidentity'
@@ -117,6 +118,7 @@ module tablestorage 'modules/Microsoft.Storage/storageAccounts/deploy.bicep' = {
     name: tablestoragename
     location: location
     roleAssignments: tablerole
+    tableServices: tables
   }
 }
 
