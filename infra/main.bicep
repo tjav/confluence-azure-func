@@ -2,7 +2,6 @@ targetScope = 'resourceGroup'
 
 param location string = resourceGroup().location
 param kvname string = 'schaap-confunc-kv'
-param kvaccess array = []
 param storagename string = 'schaapconfuncsta'
 param tablestoragename string = 'schaapconfuncstatable'
 param eventgridname string = 'schaap-confunc-grid'
@@ -11,7 +10,6 @@ param workspacename string = 'schaap-confunc-law'
 param appinsightname string = 'schaap-confunc-apis'
 param appservicename string = 'schaap-confunc-applan'
 param manageidname string = 'schaap-confunc-man-id'
-param tablestorageroles array = []
 
 module managedidentity 'modules/Microsoft.ManagedIdentity/userAssignedIdentities/deploy.bicep' = {
   name: 'deploy-managedidentity'
