@@ -2,13 +2,16 @@ targetScope = 'resourceGroup'
 
 param location string = resourceGroup().location
 param kvname string = 'schaap-confunc-kv'
+param kvaccess array = []
 param storagename string = 'schaapconfuncsta'
+param tablestoragename string = 'schaapconfuncstatable'
 param eventgridname string = 'schaap-confunc-grid'
 param funcname string = 'schaap-confunc-function'
 param workspacename string = 'schaap-confunc-law'
 param appinsightname string = 'schaap-confunc-apis'
 param appservicename string = 'schaap-confunc-applan'
 param manageidname string = 'schaap-confunc-man-id'
+param tablestorageroles array = []
 
 module managedidentity 'modules/Microsoft.ManagedIdentity/userAssignedIdentities/deploy.bicep' = {
   name: 'deploy-managedidentity'
@@ -17,11 +20,33 @@ module managedidentity 'modules/Microsoft.ManagedIdentity/userAssignedIdentities
     name: manageidname
   }
 }
+
+var tablerole = [
+  {
+    'roleDefinitionIdOrName': 'Storage Table Data Contributor'
+    'principalIds': [
+        managedidentity.outputs.principalId
+    ]
+  } 
+]
+
+var kvaccesspol = [
+  {
+    'objectId': managedidentity.outputs.principalId
+    'permissions': {
+      'secrets': [
+        'All'
+      ]
+    }    
+  } 
+]
+
 module keyvault 'modules/Microsoft.KeyVault/vaults/deploy.bicep' = {
   name: 'deploy-keyvault'
   params: {
     name: kvname
     location: location
+    accessPolicies: kvaccesspol
   } 
 }
 module storage 'modules/Microsoft.Storage/storageAccounts/deploy.bicep' = {
@@ -87,4 +112,16 @@ module functionapp 'modules/Microsoft.Web/sites/deploy.bicep' = {
     appServicePlanId: appserviceplan.outputs.resourceId
   }
 }
+
+module tablestorage 'modules/Microsoft.Storage/storageAccounts/deploy.bicep' = {
+  name: 'deploy-table-storage'
+  params: {
+    name: tablestoragename
+    location: location
+    roleAssignments: tablerole
+  }
+}
+
+
+ 
 
