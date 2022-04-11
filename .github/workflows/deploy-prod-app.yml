@@ -1,4 +1,4 @@
-name: deploy-infra
+name: deploy-prod-app
 
 # Controls when the workflow will run
 on: 
